@@ -21,7 +21,7 @@ const Wall = ( props ) => {
   return (
       <StyledWall>
         <CardList>
-        {notesToRender.map((note, index) => {
+        {notesToRender.slice(0, 10).map((note, index) => {
           return (
           <Card key={index}>
             <CardHeader>
