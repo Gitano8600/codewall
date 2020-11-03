@@ -1,22 +1,23 @@
 import React from 'react';
 import { bool } from 'prop-types';
 import { StyledMenu } from './Menu.styled';
+import { Link } from 'react-router-dom';
 
 const Menu = ({ open }) => {
   return (
     <StyledMenu open={open}>
-      <a href="/">
+      <Link to='/'>
         Home
-      </a>
-      <a href="/">
+      </Link>
+      <Link to='/signin'>
         Login
-        </a>
-      <a href="/">
+      </Link>
+      <Link to='/'>
         Roadmap
-      </a>
-      <a href="/">
+      </Link>
+      <Link to='/'>
         About
-        </a>
+      </Link>
     </StyledMenu>
   )
 }

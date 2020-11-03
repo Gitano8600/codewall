@@ -5,18 +5,24 @@ import { GlobalStyle } from './style/global'
 import { theme } from './style/theme'
 import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
-import { MenuComponent, WallComponent } from './components';
+import { MenuComponent, WallComponent, SignIn } from './components';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
+    <BrowserRouter>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
         <AppContainer>
         <MenuComponent />
-          <h1>codewall</h1>
-        <WallComponent />
+          <h1>codewall</  h1>
+        <Switch>
+          <Route exact path='/' component={WallComponent} />
+          <Route path='/signin' component={SignIn} />
+        </Switch>
         </AppContainer>
     </ThemeProvider>
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
