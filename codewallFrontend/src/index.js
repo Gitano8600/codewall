@@ -5,7 +5,7 @@ import { GlobalStyle } from './style/global'
 import { theme } from './style/theme'
 import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
-import { MenuComponent, WallComponent, SignIn } from './components';
+import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 ReactDOM.render(
@@ -19,6 +19,8 @@ ReactDOM.render(
         <Switch>
           <Route exact path='/' component={WallComponent} />
           <Route path='/signin' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
+          <Route path='/createsnippet' component={CreateSnippet} />
         </Switch>
         </AppContainer>
     </ThemeProvider>

@@ -1,18 +1,31 @@
 import React, { useRef } from 'react';
-import { SignInContainer } from './SignIn.styled';
+import { SignUpContainer } from './SignUp.styled';
 
-const SignIn = () => {
+const SignUp = () => {
     const email = useRef('');
     const password = useRef('');
+    const firstName = useRef('');
+    const lastName = useRef('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in da submit', email.current.value, password.current.value);
+        console.log('in da submit', firstName.current.value,
+        lastName.current.value, 
+        email.current.value, 
+        password.current.value);
     }
     return (
-        <SignInContainer>
+        <SignUpContainer>
             <form onSubmit={handleSubmit}>
                 <h5>Sign In</h5>
+                <div>
+                    <label htmlFor='firstName'>First name</label>
+                    <input type='text' ref={firstName}/>
+                </div>
+                <div>
+                    <label htmlFor='lastName'>Last name</label>
+                    <input type='text' ref={lastName}/>
+                </div>
                 <div>
                     <label htmlFor='email'>Email</label>
                     <input type='email' ref={email}/>
@@ -25,9 +38,9 @@ const SignIn = () => {
                     <button>Sign In</button>
                 </div>
             </form>
-        </SignInContainer>
+        </SignUpContainer>
     )
 
 }
 
-export default SignIn;
+export default SignUp;
