@@ -7,9 +7,15 @@ import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
 import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { createStore } from 'redux';
+import rootReducer from './store/reducers/rootReducer';
+import { Provider } from 'react-redux';
+
+const store = createStore(rootReducer);
 
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
     <BrowserRouter>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
@@ -25,6 +31,7 @@ ReactDOM.render(
         </AppContainer>
     </ThemeProvider>
     </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
