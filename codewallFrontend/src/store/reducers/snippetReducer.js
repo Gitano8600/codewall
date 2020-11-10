@@ -15,7 +15,11 @@ const initState = {
 }
 
 const snippetReducer = (state = initState, action) => {
-    return state
+    switch (action.type) {
+        case 'CREATE_SNIPPET':
+            console.log('created snippet', action.snippet);
+    }
+    return state;
 };
 
 export default snippetReducer;

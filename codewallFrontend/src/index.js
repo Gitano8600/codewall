@@ -7,11 +7,12 @@ import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
 import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>

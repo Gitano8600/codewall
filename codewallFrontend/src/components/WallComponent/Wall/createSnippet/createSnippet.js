@@ -1,7 +1,9 @@
 import React, { useRef } from 'react';
 import { CreateSnippetContainer } from './createSnippet.styled';
+import { connect } from 'react-redux';
+import { createSnippet } from '../../../../store/actions/snippetActions';
 
-const CreateSnippet = () => {
+const CreateSnippet = (props) => {
     const title = useRef('');
     const description = useRef('');
     const topic = useRef('');
@@ -9,11 +11,14 @@ const CreateSnippet = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in da submit', title.current.value,
-        description.current.value, 
-        topic.current.value, 
-        snippet.current.value);
+        props.createSnippet({
+            title: title.current.value, 
+            description: description.current.value, 
+            topic: topic.current.value, 
+            snippet: snippet.current.value
+        })  
     }
+
     return (
         <CreateSnippetContainer>
             <form onSubmit={handleSubmit}>
@@ -43,4 +48,10 @@ const CreateSnippet = () => {
 
 }
 
-export default CreateSnippet;
+const mapDispatchToProps = dispatch => {
+    return {
+        createSnippet: (snippet) => dispatch(createSnippet(snippet))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(CreateSnippet);
