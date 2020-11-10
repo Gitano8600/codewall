@@ -18,8 +18,13 @@ const snippetReducer = (state = initState, action) => {
     switch (action.type) {
         case 'CREATE_SNIPPET':
             console.log('created snippet', action.snippet);
+            return state;
+        case 'CREATE_SNIPPET_ERROR':
+            console.log('create snippet error', action.err);
+            return state;
+        default:
+            return state;
     }
-    return state;
 };
 
 export default snippetReducer;

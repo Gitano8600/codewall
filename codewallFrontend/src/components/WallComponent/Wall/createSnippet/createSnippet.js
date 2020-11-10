@@ -7,7 +7,7 @@ const CreateSnippet = (props) => {
     const title = useRef('');
     const description = useRef('');
     const topic = useRef('');
-    const snippet = useRef('');
+    const example = useRef('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -15,7 +15,7 @@ const CreateSnippet = (props) => {
             title: title.current.value, 
             description: description.current.value, 
             topic: topic.current.value, 
-            snippet: snippet.current.value
+            example: example.current.value
         })  
     }
 
@@ -36,8 +36,8 @@ const CreateSnippet = (props) => {
                     <input type='text' ref={topic}/>
                 </div>
                 <div>
-                    <label htmlFor='snippet'>Snippet</label>
-                    <input type='text' ref={snippet}/>
+                    <label htmlFor='example'>Snippet with an example</label>
+                    <input type='text' ref={example}/>
                 </div>
                 <div>
                     <button>Submit</button>

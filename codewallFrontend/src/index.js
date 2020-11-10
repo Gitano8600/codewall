@@ -7,31 +7,57 @@ import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
 import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import firebase from './config/fbConfig';
 
-const store = createStore(rootReducer, applyMiddleware(thunk));
+import { createFirestoreInstance, reduxFirestore, getFirestore } from 'redux-firestore';
+import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
+
+import 'firebase/firestore';
+
+const rrfConfig = { 
+  userProfile: 'snippets',
+  useFirestoreForProfile: true
+}
+
+const store = createStore(rootReducer, 
+  compose(
+  applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+  reduxFirestore(firebase)
+  )  
+);
+
+const rffProps = {
+  firebase,
+  useFirestoreForProfile: true,
+  config: rrfConfig,
+  dispatch: store.dispatch,
+  createFirestoreInstance
+}
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-        <AppContainer>
+    <ReactReduxFirebaseProvider {...rffProps}>
+      <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+          <AppContainer>
         <MenuComponent />
-          <h1>codewall</  h1>
-        <Switch>
-          <Route exact path='/' component={WallComponent} />
-          <Route path='/signin' component={SignIn} />
-          <Route path='/signup' component={SignUp} />
-          <Route path='/createsnippet' component={CreateSnippet} />
-        </Switch>
-        </AppContainer>
-    </ThemeProvider>
-    </BrowserRouter>
+            <h1>codewall</  h1>
+          <Switch>
+            <Route exact path='/' component={WallComponent} />
+            <Route path='/signin' component={SignIn} />
+            <Route path='/signup' component={SignUp} />
+            <Route path='/createsnippet' component={CreateSnippet} />
+          </Switch>
+          </AppContainer>
+      </ThemeProvider>
+      </BrowserRouter>
+    </ReactReduxFirebaseProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
