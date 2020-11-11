@@ -2,15 +2,21 @@ import React from 'react';
 import { StyledWall, CardList, Card, LogoBox, CardHeader, CardDescription, LanguageLogo, HalfCircle } from './Wall.styled';
 import python from "../../../assets/python.svg"
 import { array } from 'prop-types';
+import { Link } from 'react-router-dom';
+import snippetReducer from '../../../store/reducers/snippetReducer';
 
 
 const Wall = ( props ) => {
-  let notesToRender = props.serverData.filter(notes =>
-    props.filterString.every(word => 
-      (notes.description + ' ' + notes.title)
-      .toLowerCase()
-      .includes(word))
-  )
+  let notesToRender = null;
+
+  if (props.serverData!==undefined && props.serverData!==null) {
+    notesToRender = props.serverData.filter(notes =>
+      props.filterString.every(word => 
+        (notes.description + ' ' + notes.title)
+        .toLowerCase()
+        .includes(word))
+    )
+  }
 
   // INITAL CODE
   //let notesToRender = props.serverData.filter(notes =>
@@ -21,8 +27,9 @@ const Wall = ( props ) => {
   return (
       <StyledWall>
         <CardList>
-        {notesToRender.slice(0, 10).map((note, index) => {
+        {notesToRender && notesToRender.slice(0, 10).map((note, index) => {
           return (
+          <Link to={'/snippet/' + note.id}>
           <Card key={index}>
             <CardHeader>
               {note.title}
@@ -39,6 +46,7 @@ const Wall = ( props ) => {
               {note.topic}
               </LogoBox>          
           </Card>
+          </Link>
         )})}
 
         </CardList>

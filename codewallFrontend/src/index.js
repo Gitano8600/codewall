@@ -5,7 +5,7 @@ import { GlobalStyle } from './style/global'
 import { theme } from './style/theme'
 import {ThemeProvider} from 'styled-components'
 import {AppContainer} from './style/containers'
-import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet } from './components';
+import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet, EditSnippet } from './components';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
@@ -53,6 +53,7 @@ ReactDOM.render(
             <Route path='/signin' component={SignIn} />
             <Route path='/signup' component={SignUp} />
             <Route path='/createsnippet' component={CreateSnippet} />
+            <Route path='/snippet/:id' component={EditSnippet} />
           </Switch>
           </AppContainer>
       </ThemeProvider>
