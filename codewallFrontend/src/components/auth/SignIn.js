@@ -1,13 +1,19 @@
 import React, { useRef } from 'react';
 import { SignInContainer } from './SignIn.styled';
+import { connect } from 'react-redux';
+import { signIn } from '../../store/actions/authActions';
 
-const SignIn = () => {
+const SignIn = (props) => {
     const email = useRef('');
     const password = useRef('');
+    const { authError } = props
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('in da submit', email.current.value, password.current.value);
+        props.signIn({
+            email: email.current.value,
+            password: password.current.value
+        })
     }
     return (
         <SignInContainer>
@@ -23,11 +29,25 @@ const SignIn = () => {
                 </div>
                 <div>
                     <button>Sign In</button>
+                    {authError && <p>authError</p>}
                 </div>
             </form>
         </SignInContainer>
     )
-
+    
 }
 
-export default SignIn;
+const mapStateToProps = (state) => {
+    console.log('in da signinstate', state);
+    return {
+        authError: state.auth.authError
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        signIn: (creds) => dispatch(signIn(creds))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
