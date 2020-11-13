@@ -1,7 +1,7 @@
 const initState = {
     snippets: [
-        {id: 1, title: "python code snippet 1", description: "lorem ipsum and pandas", topic: "Python"},
-        {id: 2, title: "python code snippet 2", description: "lorem ipsum and new column", topic: "Python"},
+        {id: 1, title: "Reverse a string", description: 'txt = "Hello World"[::-1]', topic: "Python"},
+        {id: 2, title: "Repeat a string", description: "function repeat_string_num_times(str, num) {\n\n}", topic: "JavaScript"},
         {id: 3, title: "python code snippet 3", description: "seaborn data vizualization", topic: "Python"},
         {id: 4, title: "python code snippet 4", description: "numpy concatenante arrays", topic: "Python"},
         {id: 5, title: "ruby code snippet 1", description: "Ich mag Rubine", topic: "Ruby"},

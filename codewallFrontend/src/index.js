@@ -9,9 +9,10 @@ import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet, EditSnippe
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from './store/reducers/rootReducer';
-import { Provider } from 'react-redux';
+import { Provider, useSelector } from 'react-redux';
 import thunk from 'redux-thunk';
 import firebase from './config/fbConfig';
+import { isLoaded } from 'react-redux-firebase';
 
 import { createFirestoreInstance, reduxFirestore, getFirestore } from 'redux-firestore';
 import { ReactReduxFirebaseProvider, getFirebase } from 'react-redux-firebase';
@@ -38,6 +39,12 @@ const rffProps = {
   createFirestoreInstance
 }
 
+function AuthIsLoaded({ children }) {
+  const auth = useSelector(state => state.firebase.auth)
+  if (!isLoaded(auth)) return <div>Loading Screen...</div>;
+      return children
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -48,6 +55,7 @@ ReactDOM.render(
           <AppContainer>
         <MenuComponent />
             <h1>codewall</  h1>
+    <AuthIsLoaded>
           <Switch>
             <Route exact path='/' component={WallComponent} />
             <Route path='/signin' component={SignIn} />
@@ -55,6 +63,7 @@ ReactDOM.render(
             <Route path='/createsnippet' component={CreateSnippet} />
             <Route path='/snippet/:id' component={EditSnippet} />
           </Switch>
+      </AuthIsLoaded>
           </AppContainer>
       </ThemeProvider>
       </BrowserRouter>
