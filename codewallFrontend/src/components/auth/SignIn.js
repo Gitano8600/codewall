@@ -29,7 +29,7 @@ const SignIn = (props) => {
                 </div>
                 <div>
                     <button>Sign In</button>
-                    {authError && <p>authError</p>}
+                    {authError && <p>{authError}</p>}
                 </div>
             </form>
         </SignInContainer>
