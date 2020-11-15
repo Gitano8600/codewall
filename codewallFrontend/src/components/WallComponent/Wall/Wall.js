@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 
 const Wall = ( props ) => {
-  const snippets = props.isAuth ? props.serverData : props.defaultSnippets;
+  const snippets = props.isAuth && props.serverData ? props.serverData : props.defaultSnippets;
 
   const notesToRender = snippets.filter(notes =>
     props.filterString.every(word => 
