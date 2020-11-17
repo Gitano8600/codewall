@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import { EditSnippetContainer } from './editSnippet.styled';
+import moment from 'moment';
 
 const EditSnippet = (props) => {
   const { snippet } = props;
@@ -18,7 +19,7 @@ const EditSnippet = (props) => {
           </div>
           <div>
             <div>Created by {snippet.userName}</div>
-            <p>{snippet.createdAt.toDate().toString()}</p>
+            <p>{moment(snippet.createdAt.toDate()).calendar()}</p>
           </div>
         </div>
       </EditSnippetContainer>

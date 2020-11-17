@@ -16,7 +16,8 @@ const CreateSnippet = (props) => {
             description: description.current.value, 
             topic: topic.current.value, 
             example: example.current.value
-        })  
+        });
+        props.history.push('/');
     }
 
     return (

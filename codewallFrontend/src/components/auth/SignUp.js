@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 const SignUp = (props) => {
     const email = useRef('');
     const password = useRef('');
+    const userName = useRef('');
     const firstName = useRef('');
     const lastName = useRef('');
     const { authError } = props
@@ -13,6 +14,7 @@ const SignUp = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         props.signUp({
+            userName: userName.current.value,
             firstName: firstName.current.value,
             lastName: lastName.current.value, 
             email: email.current.value, 
@@ -23,6 +25,10 @@ const SignUp = (props) => {
         <SignUpContainer>
             <form onSubmit={handleSubmit}>
                 <h5>Sign In</h5>
+                <div>
+                    <label htmlFor='userName'>User name</label>
+                    <input type='text' ref={userName}/>
+                </div>
                 <div>
                     <label htmlFor='firstName'>First name</label>
                     <input type='text' ref={firstName}/>

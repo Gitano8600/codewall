@@ -1,10 +1,12 @@
 export const createSnippet = (snippet) => {
     return (dispatch, getState, { getFirebase, getFirestore }) => {
         const firestore = getFirestore();
+        const profile = getState().firebase.profile;
+        const authorId = getState().firebase.auth.uid;
         firestore.collection('snippets').add({
             ...snippet,
-            userName: 'Manuel',
-            userId: 12345,
+            userName: profile.userName,
+            userId: authorId,
             createdAt: new Date()
         }).then(() => {
             dispatch({ type: 'CREATE_SNIPPET', snippet });
