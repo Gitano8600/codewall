@@ -26,8 +26,7 @@ const Wall = ( props ) => {
         <CardList>
         {notesToRender && notesToRender.slice(0, 10).map((note, index) => {
           return (
-            <Card key={index}>
-              <Link to={'/snippet/' + note.id}>
+            <Card key={index} onClick={() => props.setSelectedSnippet(note.id)}>
             <CardHeader>
               {note.title}
             </CardHeader>
@@ -42,7 +41,6 @@ const Wall = ( props ) => {
               </HalfCircle>
               {note.topic}
               </LogoBox>          
-          </Link>
           </Card>
         )})}
 
@@ -51,6 +49,6 @@ const Wall = ( props ) => {
     )
   }
   Wall.propTypes = {
-    serverData: array.isRequired,
+    serverData: array,
   }
   export default Wall;

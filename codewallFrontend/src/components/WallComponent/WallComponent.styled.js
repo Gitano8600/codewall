@@ -10,6 +10,7 @@ export const WallContainer = styled.div`
   margin: 10px;
   padding: 15px;
   border-radius: 10px;
+  border: 5px white solid;
 `;
 
 export const SearchBox = styled.input`

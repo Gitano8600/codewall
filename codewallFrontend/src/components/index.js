@@ -4,3 +4,4 @@ export { default as CreateSnippet } from './WallComponent/Wall/createSnippet/cre
 export { default as EditSnippet } from './WallComponent/Wall/editSnippet/editSnippet';
 export { default as SignIn } from './auth/SignIn';
 export { default as SignUp } from './auth/SignUp';
+export { default as Modal} from './Modal/Modal'
