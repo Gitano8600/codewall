@@ -6,11 +6,11 @@ const bounceAnimation = keyframes`${zoomInDown}`;
 export const WallContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};
   color: ${({ theme }) => theme.primaryDark};
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 70%;
+  min-height: 650px;
   display: flex;
   flex-direction: column;
-  margin: 10px;
   padding: 15px;
   border-radius: 10px;
   animation: 1.5s ${bounceAnimation};
