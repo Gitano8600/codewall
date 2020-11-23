@@ -1,4 +1,7 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { zoomInDown } from 'react-animations';
+
+const bounceAnimation = keyframes`${zoomInDown}`;
 
 export const WallContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};
@@ -10,7 +13,7 @@ export const WallContainer = styled.div`
   margin: 10px;
   padding: 15px;
   border-radius: 10px;
-  border: 5px white solid;
+  animation: 1.5s ${bounceAnimation};
 `;
 
 export const SearchBox = styled.input`

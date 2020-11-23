@@ -10,7 +10,8 @@ const Modal = (props) => {
     if (snippet) {
         return  (
     <StyledModal>
-        <div>
+      <div>
+        <div class='wobbler'>
           <div>
             <span>Title: {snippet.title}</span>
             <p>Description: {snippet.description}</p>
@@ -21,6 +22,7 @@ const Modal = (props) => {
             <div>Created by {snippet.userName}</div>
             <p>{moment(snippet.createdAt.toDate()).calendar()}</p>
           </div>
+        </div>
           <button>edit</button>
           <button>delete</button>
           <button onClick={() => props.setSelectedSnippet(null)}>close</button>
