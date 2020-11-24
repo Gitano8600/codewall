@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyledModal } from './Modal.styled';
+import { StandardButton } from '../../style/buttons' 
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
@@ -7,25 +8,26 @@ import moment from 'moment';
 
 const Modal = (props) => {
     const { snippet } = props;
+    const timedClose = () =>{
+      setTimeout(function(){props.setSelectedSnippet(null)}, 500);
+    }
     if (snippet) {
         return  (
     <StyledModal>
       <div>
         <div class='wobbler'>
           <div>
-            <span>Title: {snippet.title}</span>
-            <p>Description: {snippet.description}</p>
-            <p>Sample: {snippet.example}</p>
-            <p>Topic: {snippet.topic}</p>
+            <span>{snippet.topic}: {snippet.title}</span>
+            <p>{moment(snippet.createdAt.toDate()).calendar()}</p>
+            <article>Description: {snippet.description}</article>
+            <article>Sample: {snippet.example}</article>
           </div>
           <div>
-            <div>Created by {snippet.userName}</div>
-            <p>{moment(snippet.createdAt.toDate()).calendar()}</p>
           </div>
         </div>
-          <button>edit</button>
-          <button>delete</button>
-          <button onClick={() => props.setSelectedSnippet(null)}>close</button>
+          <StandardButton>edit</StandardButton>
+          <StandardButton>delete</StandardButton>
+          <StandardButton class='close' onClick={timedClose}>close</StandardButton>
         </div>
     </StyledModal>
     )

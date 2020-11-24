@@ -1,7 +1,7 @@
 import styled, { keyframes } from 'styled-components';
-import { zoomInDown } from 'react-animations';
+import { fadeInUp } from 'react-animations';
 
-const bounceAnimation = keyframes`${zoomInDown}`;
+const bounceAnimation = keyframes`${fadeInUp}`;
 
 export const WallContainer = styled.div`
   background: ${({ theme }) => theme.primaryLight};
@@ -14,6 +14,20 @@ export const WallContainer = styled.div`
   padding: 15px;
   border-radius: 10px;
   animation: 1.5s ${bounceAnimation};
+  position: relative;
+
+  :before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-width: 0 45px 45px 0;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.primaryLightShadow} ${({ theme }) => theme.primaryDark};
+  display: block;
+  width: 0;
+  border-radius: 0 0 0 10px;
+}
 `;
 
 export const SearchBox = styled.input`
