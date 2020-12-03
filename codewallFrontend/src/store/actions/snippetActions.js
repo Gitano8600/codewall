@@ -1,5 +1,5 @@
 export const createSnippet = (snippet) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         const profile = getState().firebase.profile;
         const authorId = getState().firebase.auth.uid;
@@ -12,6 +12,17 @@ export const createSnippet = (snippet) => {
             dispatch({ type: 'CREATE_SNIPPET', snippet });
         }).catch((err) => {
             dispatch({ type: 'CREATE_SNIPPET_ERROR', err });
+        })
+    }
+};
+
+export const deleteSnippet = (id) => {
+    return (dispatch, getState, { getFirestore }) => {
+        const firestore = getFirestore();
+        firestore.collection('snippets').doc(id.id).delete().then(() => {
+            dispatch({ type: 'DELETE_SNIPPET'});
+        }).catch((err) => {
+            dispatch({ type: 'DELETE_SNIPPET_ERROR', err });
         })
     }
 };

@@ -5,13 +5,26 @@ import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment';
+import { deleteSnippet } from '../../store/actions/snippetActions';
+import { ThemeProvider } from 'styled-components';
 
 const Modal = (props) => {
+    console.log('in da modal props', props)
     const [editable, setEditable] = useState(false);
-    const { snippet } = props;
+    const { snippet, selectedSnippet } = props;
+    console.log('in da modal snippet', snippet)
     const timedClose = () =>{
       setTimeout(function(){props.setSelectedSnippet(null)}, 500);
     }
+
+    const handleDelete = (event) => {
+      event.preventDefault();
+      props.deleteSnippet({
+        id: selectedSnippet,
+      });
+      //props.history.push('/');
+  }
+
     if (snippet) {
         return  (
     <StyledModal>
@@ -29,7 +42,7 @@ const Modal = (props) => {
           {!editable &&
           <>
             <StandardButton onClick={() => setEditable(!editable)}>edit</StandardButton>
-            <StandardButton>delete</StandardButton>
+            <StandardButton onClick={handleDelete}>delete</StandardButton>
             <StandardButton class='close' onClick={timedClose}>close</StandardButton>
           </>
           }
@@ -54,6 +67,12 @@ const Modal = (props) => {
 
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+      deleteSnippet: (id) => dispatch(deleteSnippet(id))
+  }
+}
+
 const mapStateToProps = (state, ownProps) => {
 	const id = ownProps.selectedSnippet;
 	return {
@@ -61,4 +80,4 @@ const mapStateToProps = (state, ownProps) => {
 	};
 };
 
-export default compose(connect(mapStateToProps), firestoreConnect([ { collection: 'snippets' } ]))(Modal);
+export default compose(connect(mapStateToProps, mapDispatchToProps), firestoreConnect([ { collection: 'snippets' } ]))(Modal);
