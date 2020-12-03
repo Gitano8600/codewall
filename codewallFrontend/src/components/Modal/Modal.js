@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledModal } from './Modal.styled';
 import { StandardButton } from '../../style/buttons' 
 import { connect } from 'react-redux'
@@ -7,6 +7,7 @@ import { compose } from 'redux'
 import moment from 'moment';
 
 const Modal = (props) => {
+    const [editable, setEditable] = useState(false);
     const { snippet } = props;
     const timedClose = () =>{
       setTimeout(function(){props.setSelectedSnippet(null)}, 500);
@@ -25,9 +26,19 @@ const Modal = (props) => {
           <div>
           </div>
         </div>
-          <StandardButton>edit</StandardButton>
-          <StandardButton>delete</StandardButton>
-          <StandardButton class='close' onClick={timedClose}>close</StandardButton>
+          {!editable &&
+          <>
+            <StandardButton onClick={() => setEditable(!editable)}>edit</StandardButton>
+            <StandardButton>delete</StandardButton>
+            <StandardButton class='close' onClick={timedClose}>close</StandardButton>
+          </>
+          }
+          {editable &&
+          <>
+          <StandardButton>submit</StandardButton>
+          <StandardButton onClick={() => setEditable(!editable)}>discard</StandardButton>
+          </>
+          }
         </div>
     </StyledModal>
     )

@@ -9,6 +9,8 @@ export const WallContainer = styled.div`
   width: 70%;
   height: 70%;
   min-height: 650px;
+  min-width: 1000px;
+  margin-left: 100px;
   display: flex;
   flex-direction: column;
   padding: 15px;
