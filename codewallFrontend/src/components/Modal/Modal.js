@@ -1,22 +1,29 @@
 import React, { useState } from 'react';
-import { StyledModal } from './Modal.styled';
+import { StyledModal, ContentWrapper, CodeContent, AttributeContent, ButtonWrapper } from './Modal.styled';
 import { StandardButton } from '../../style/buttons' 
 import { connect } from 'react-redux'
 import { firestoreConnect } from 'react-redux-firebase'
 import { compose } from 'redux'
 import moment from 'moment';
 import { deleteSnippet } from '../../store/actions/snippetActions';
-import { ThemeProvider } from 'styled-components';
+import Code from './Code'
+
+
 
 const Modal = (props) => {
-    console.log('in da modal props', props)
     const [editable, setEditable] = useState(false);
     const [deletable, setDeletable] = useState(false);
     const { snippet, selectedSnippet } = props;
-    console.log('in da modal snippet', snippet)
     const timedClose = () =>{
       setTimeout(function(){props.setSelectedSnippet(null)}, 500);
     }
+    //const language = 'javascript';
+    //const code = 'const helloWord = () => console.log("Hello World")';
+    const language = 'python';
+    const code = `def gagaga(mimi):
+      return 'hi du'
+      
+  `;
 
     const handleDelete = (event) => {
       event.preventDefault();
@@ -29,17 +36,17 @@ const Modal = (props) => {
     if (snippet) {
         return  (
     <StyledModal>
-      <div>
-        <div class='wobbler'>
-          <div>
+        <ContentWrapper>
+          <AttributeContent>
             <span>{snippet.topic}: {snippet.title}</span>
             <p>{moment(snippet.createdAt.toDate()).calendar()}</p>
             <article>Description: {snippet.description}</article>
-            <article>Sample: {snippet.example}</article>
-          </div>
-          <div>
-          </div>
-        </div>
+          </AttributeContent>
+          <CodeContent>
+            <Code code={code} language={language}/>
+          </CodeContent>
+        </ContentWrapper>
+        <ButtonWrapper>
           {!editable && !deletable &&
           <>
             <StandardButton onClick={() => setEditable(!editable)}>edit</StandardButton>
@@ -59,7 +66,7 @@ const Modal = (props) => {
             <StandardButton onClick={() => setDeletable(!deletable)}>cancel</StandardButton>
           </>
           }
-        </div>
+        </ButtonWrapper>
     </StyledModal>
     )
     } else {
