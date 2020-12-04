@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components';
 const Modal = (props) => {
     console.log('in da modal props', props)
     const [editable, setEditable] = useState(false);
+    const [deletable, setDeletable] = useState(false);
     const { snippet, selectedSnippet } = props;
     console.log('in da modal snippet', snippet)
     const timedClose = () =>{
@@ -22,7 +23,7 @@ const Modal = (props) => {
       props.deleteSnippet({
         id: selectedSnippet,
       });
-      //props.history.push('/');
+      props.setSelectedSnippet(null);
   }
 
     if (snippet) {
@@ -39,17 +40,23 @@ const Modal = (props) => {
           <div>
           </div>
         </div>
-          {!editable &&
+          {!editable && !deletable &&
           <>
             <StandardButton onClick={() => setEditable(!editable)}>edit</StandardButton>
-            <StandardButton onClick={handleDelete}>delete</StandardButton>
+            <StandardButton onClick={() => setDeletable(!deletable)}>delete</StandardButton>
             <StandardButton class='close' onClick={timedClose}>close</StandardButton>
           </>
           }
           {editable &&
           <>
-          <StandardButton>submit</StandardButton>
-          <StandardButton onClick={() => setEditable(!editable)}>discard</StandardButton>
+            <StandardButton>submit</StandardButton>
+            <StandardButton onClick={() => setEditable(!editable)}>discard</StandardButton>
+          </>
+          }
+          {deletable &&
+          <>
+            <StandardButton onClick={handleDelete}>confirm</StandardButton>
+            <StandardButton onClick={() => setDeletable(!deletable)}>cancel</StandardButton>
           </>
           }
         </div>
