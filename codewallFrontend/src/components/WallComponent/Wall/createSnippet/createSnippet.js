@@ -38,7 +38,7 @@ const CreateSnippet = (props) => {
                 </div>
                 <div>
                     <label htmlFor='example'>Snippet with an example</label>
-                    <input type='text' ref={example}/>
+                    <textarea type='text' ref={example}/>
                 </div>
                 <div>
                     <button>Submit</button>

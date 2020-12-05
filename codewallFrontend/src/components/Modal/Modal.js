@@ -8,8 +8,6 @@ import moment from 'moment';
 import { deleteSnippet } from '../../store/actions/snippetActions';
 import Code from './Code'
 
-
-
 const Modal = (props) => {
     const [editable, setEditable] = useState(false);
     const [deletable, setDeletable] = useState(false);
@@ -17,13 +15,6 @@ const Modal = (props) => {
     const timedClose = () =>{
       setTimeout(function(){props.setSelectedSnippet(null)}, 500);
     }
-    //const language = 'javascript';
-    //const code = 'const helloWord = () => console.log("Hello World")';
-    const language = 'python';
-    const code = `def gagaga(mimi):
-      return 'hi du'
-      
-  `;
 
     const handleDelete = (event) => {
       event.preventDefault();
@@ -43,7 +34,7 @@ const Modal = (props) => {
             <article>Description: {snippet.description}</article>
           </AttributeContent>
           <CodeContent>
-            <Code code={code} language={language}/>
+            <Code code={snippet.example} language={snippet.topic.toLowerCase()}/>
           </CodeContent>
         </ContentWrapper>
         <ButtonWrapper>
