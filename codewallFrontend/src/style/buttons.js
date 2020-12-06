@@ -19,3 +19,21 @@ export const StandardButton = styled.button`
     }
     }
 `;
+
+export const AddButton = styled.button`
+    margin: 1rem 1rem 1rem 0;
+    color: ${({ theme }) => theme.primaryLight};
+    background-color: ${({ theme }) => theme.primaryDark};
+    font-weight: bold;
+    border-radius: 16px;
+    font-size: 24px;
+    width: 80px;
+    height: 40px;
+    :focus {
+        outline:0;
+        }
+    :focus {
+        animation: 1s ${hingeAnimation};
+    }
+    }
+`;

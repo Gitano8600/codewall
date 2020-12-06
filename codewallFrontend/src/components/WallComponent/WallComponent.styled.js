@@ -8,12 +8,12 @@ export const WallContainer = styled.div`
   color: ${({ theme }) => theme.primaryDark};
   width: 70%;
   height: 70%;
-  min-height: 650px;
+  min-height: 720px;
   min-width: 1000px;
   margin-left: 100px;
   display: flex;
   flex-direction: column;
-  padding: 15px;
+  //padding: 15px;
   border-radius: 10px;
   animation: 1.5s ${bounceAnimation};
   position: relative;
@@ -30,6 +30,7 @@ export const WallContainer = styled.div`
   width: 0;
   border-radius: 0 0 0 10px;
 }
+
 `;
 
 export const SearchBox = styled.input`
@@ -51,3 +52,10 @@ outline: none;
 }
 
 `
+
+export const Ground = styled.div`
+  align-self: flex-end;
+  padding-right: 2rem;
+  padding-bottom: 2rem;
+`
+

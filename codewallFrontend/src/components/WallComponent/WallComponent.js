@@ -3,11 +3,12 @@ import React, { useState } from 'react';
 import { StyledSearchBar } from './SearchBar/SearchBar.styled';
 import Wall from './Wall';
 import Modal from '../Modal/Modal'
-import { WallContainer, SearchBox } from './WallComponent.styled';
+import { WallContainer, SearchBox, Ground } from './WallComponent.styled';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
-import { Redirect } from 'react-router-dom';
+import { AddButton } from '../../style/buttons'
+import { Link } from 'react-router-dom';
 
 //working directly in wall component, no separate Seach Bar necessary anymore
 
@@ -42,6 +43,7 @@ const WallComponent = (props) => {
     isAuth={isAuth}
     setSelectedSnippet={setSelectedSnippet}
     />
+    <Ground><AddButton><Link to="/createsnippet">+</Link></AddButton></Ground>
   </WallContainer>
   )
 }
