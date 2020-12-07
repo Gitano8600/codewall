@@ -4,6 +4,7 @@ import { headShake } from 'react-animations';
 const hingeAnimation = keyframes`${headShake}`;
 
 export const StandardButton = styled.button`
+    font-family: 'DM Mono', monospace;
     margin: 1rem 1rem 1rem 0;
     color: ${({ theme }) => theme.primaryLight};
     background-color: ${({ theme }) => theme.primaryDark};
