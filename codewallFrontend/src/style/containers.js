@@ -138,7 +138,7 @@ export const InputWrapper = styled.div`
 export const CodeContainer = styled.div`
   position: relative;
   flex-grow: 3;
-  background: #F5F2F0;
+  background: ${({ theme }) => theme.primaryDark};
   margin: 1em 1em 0 1em;
   margin-right: 2rem;
   border-radius: 10px;
@@ -174,7 +174,7 @@ export const CodeContainer = styled.div`
     opacity: 0;
     transition: 'all 200ms',
 }
-    input:not(:placeholder-shown) + label,
+    div:not(:placeholder-shown) + label,
     textarea:not(:placeholder-shown) + label {
     background: ${({ theme }) => theme.primaryDark};
     transform: translate(0, -30%);

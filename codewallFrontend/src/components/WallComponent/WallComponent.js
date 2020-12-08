@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 //import SearchBar from './SearchBar'
 import { StyledSearchBar } from './SearchBar/SearchBar.styled';
 import Wall from './Wall';
-import Modal from '../Modal/Modal'
+//import Modal from '../Modal/Modal'
+import ViewSnippet from './Wallcomponents/viewSnippet';
 import { WallContainer, SearchBox, Ground } from './WallComponent.styled';
 import EditSnippet from '../WallComponent/Wallcomponents/editSnippet'
 import { connect } from 'react-redux';
@@ -29,7 +30,7 @@ const WallComponent = (props) => {
   if (selectedSnippet && !editable) {
     return (
       <WallContainer>
-      <Modal 
+      <ViewSnippet
       selectedSnippet={selectedSnippet}
       setSelectedSnippet={setSelectedSnippet}
       editable={editable}

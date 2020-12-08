@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Prism from 'prismjs';
-import '../../style/prism.css'
-import 'prismjs/components/prism-python';
+import '../../../style/prism.css'
+import 'prismjs/components/prism-sql';
 
 export default function Code({ code, language }) {
   useEffect(() => {
