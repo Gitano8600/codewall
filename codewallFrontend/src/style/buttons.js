@@ -15,14 +15,11 @@ export const StandardButton = styled.button`
     :focus {
         outline:0;
         }
-    :focus {
-        animation: 1s ${hingeAnimation};
-    }
-    }
 `;
 
 export const AddButton = styled.button`
     margin: 1rem 1rem 1rem 0;
+    
     color: ${({ theme }) => theme.primaryLight};
     background-color: ${({ theme }) => theme.primaryDark};
     font-weight: bold;
@@ -35,6 +32,5 @@ export const AddButton = styled.button`
         }
     :focus {
         animation: 1s ${hingeAnimation};
-    }
     }
 `;

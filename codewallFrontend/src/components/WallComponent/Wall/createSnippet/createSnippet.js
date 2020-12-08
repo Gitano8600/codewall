@@ -1,5 +1,4 @@
 import React, { useRef, useState, useCallback } from 'react';
-import { CreateSnippetContainer } from './createSnippet.styled';
 import { WallContainer, StyledNoteForm, ContentWrapper, InputWrapper, InputWrapper2, SnippetAttributeContainer, CodeContainer, ButtonWrapper } from '../../../../style/containers'
 import { StandardButton} from '../../../../style/buttons'
 import { connect } from 'react-redux';

@@ -9,11 +9,10 @@ import { deleteSnippet } from '../../store/actions/snippetActions';
 import Code from './Code'
 
 const Modal = (props) => {
-    const [editable, setEditable] = useState(false);
+    const {snippet, selectedSnippet, setSelectedSnippet, editable, setEditable} = props;
     const [deletable, setDeletable] = useState(false);
-    const { snippet, selectedSnippet } = props;
     const timedClose = () =>{
-      setTimeout(function(){props.setSelectedSnippet(null)}, 500);
+      setTimeout(function(){setSelectedSnippet(null)}, 500);
     }
 
     const handleDelete = (event) => {

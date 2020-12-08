@@ -22,6 +22,12 @@ const snippetReducer = (state = initState, action) => {
         case 'CREATE_SNIPPET_ERROR':
             console.log('create snippet error', action.err);
             return state;
+        case 'EDIT_SNIPPET':
+            console.log('edited snippet', action.snippet);
+            return state;
+        case 'EDIT_SNIPPET_ERROR':
+            console.log('edit snippet error', action.err);
+            return state;
         case 'DELETE_SNIPPET':
             return state;
         case 'DELETE_SNIPPET_ERROR':

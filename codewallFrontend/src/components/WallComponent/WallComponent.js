@@ -4,6 +4,7 @@ import { StyledSearchBar } from './SearchBar/SearchBar.styled';
 import Wall from './Wall';
 import Modal from '../Modal/Modal'
 import { WallContainer, SearchBox, Ground } from './WallComponent.styled';
+import EditSnippet from '../WallComponent/Wallcomponents/editSnippet'
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
 import { compose } from 'redux';
@@ -15,6 +16,7 @@ import { Link } from 'react-router-dom';
 const WallComponent = (props) => {
   console.log('in da WALLCOMPONENT props', props)
   const {snippets, defaultSnippets, isAuth } = props;
+  const [editable, setEditable] = useState(false);
   const [filterString, setFilterString] = useState([]);
   const [showSnippet, setShowSnippet] = useState(true);
   const [selectedSnippet, setSelectedSnippet] = useState(null);
@@ -24,12 +26,23 @@ const WallComponent = (props) => {
     console.log('in da filterString', filterString)
   };
 
-  if (selectedSnippet) {
+  if (selectedSnippet && !editable) {
     return (
       <WallContainer>
       <Modal 
       selectedSnippet={selectedSnippet}
-      setSelectedSnippet={setSelectedSnippet}/>
+      setSelectedSnippet={setSelectedSnippet}
+      editable={editable}
+      setEditable={setEditable}/>
+      </WallContainer>
+    )
+  } else if (selectedSnippet && editable) {
+    return (
+      <WallContainer>
+        <EditSnippet 
+        selectedSnippet={selectedSnippet}
+        editable={editable}
+        setEditable={setEditable}/>
       </WallContainer>
     )
   } else {
