@@ -56,7 +56,7 @@ const WallComponent = (props) => {
     isAuth={isAuth}
     setSelectedSnippet={setSelectedSnippet}
     />
-    <Ground><AddButton><Link to="/createsnippet">+</Link></AddButton></Ground>
+    <Ground><Link to="/createsnippet"><AddButton>+</AddButton></Link></Ground>
   </WallContainer>
   )
 }

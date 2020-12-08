@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import withAuthProtection from '../utils/authHOC/withAuthProtection';
 import noAuthProtection from '../utils/authHOC/noAuthProtection';
-import { MenuComponent, WallComponent, SignIn, SignUp, CreateSnippet, EditSnippet, Modal } from '../components';
+import { MenuComponent, WallComponent, SignIn, SignUp } from '../components';
+import CreateSnippet from '../components/WallComponent/Wallcomponents/createSnippet'
 import { connect } from 'react-redux';
 
 const ProtectedCreateSnippet = withAuthProtection('/')(CreateSnippet)
-const ProtectedShowSnippet = withAuthProtection('/')(EditSnippet)
 const NoAuthSignIn = noAuthProtection('/')(SignIn)
 const NoAuthSignUp = noAuthProtection('/')(SignUp)
 
@@ -38,13 +38,6 @@ const Routes = (props) => {
             path='/createsnippet'
             render={props => (
             <ProtectedCreateSnippet me={auth.uid} {...props} />
-            )}
-            />
-            <Route
-            exact
-            path='/snippet/:id'
-            render={props => (
-            <ProtectedShowSnippet me={auth.uid} {...props} />
             )}
             />
           </Switch>

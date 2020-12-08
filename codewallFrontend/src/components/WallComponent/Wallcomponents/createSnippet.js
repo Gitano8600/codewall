@@ -1,26 +1,34 @@
-import React, { useRef, useState, useCallback } from 'react';
-import { WallContainer, StyledNoteForm, ContentWrapper, InputWrapper, InputWrapper2, SnippetAttributeContainer, CodeContainer, ButtonWrapper } from '../../../../style/containers'
-import { StandardButton} from '../../../../style/buttons'
+import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import { createSnippet } from '../../../../store/actions/snippetActions';
 import { Link } from 'react-router-dom'
+import { 
+    WallContainer, 
+    StyledNoteForm, 
+    ContentWrapper, 
+    InputWrapper, 
+    SnippetAttributeContainer, 
+    CodeContainer, 
+    ButtonWrapper 
+} from '../../../style/containers'
+import { StandardButton} from '../../../style/buttons'
+import { createSnippet } from '../../../store/actions/snippetActions';
 
 const CreateSnippet = (props) => {
+    const {history, createSnippet} = props
     const title = useRef('');
     const description = useRef('');
     const topic = useRef('');
     const example = useRef('');
-    const [isFocused, setIsFocused] = useState(false);
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        props.createSnippet({
+        createSnippet({
             title: title.current.value, 
             description: description.current.value, 
             topic: topic.current.value, 
             example: example.current.value
         });
-        props.history.push('/');
+        history.push('/');
     }
     
     return (
@@ -51,11 +59,11 @@ const CreateSnippet = (props) => {
                 </ContentWrapper>
                 <ButtonWrapper>
                     <StandardButton>Submit</StandardButton>
-                    <StandardButton>
-                        <Link to="/">
+                    <Link to="/">
+                        <StandardButton>
                             Cancel
-                        </Link>        
-                    </StandardButton>
+                        </StandardButton>
+                    </Link>        
                 </ButtonWrapper>
             </StyledNoteForm>
         </WallContainer>
