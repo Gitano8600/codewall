@@ -37,10 +37,11 @@ export const Card = styled.article`
   display: flex;
   position: relative;
   flex-direction: column;
+  justify-content: space-between;
   height: 350px;
   width: 400px;
   min-width: 250px;
-  padding: 1.5rem;
+  padding: 1rem;
 
   border-radius: 16px;
   background: ${({ theme }) => theme.primaryDark};
@@ -63,24 +64,28 @@ export const Card = styled.article`
 `;
 
 export const LogoBox = styled.div`
-  position: relative;
-  display: grid;
-  grid-template-columns: 75px 1fr;
-  align-items: center;
-  margin: 3rem 0 0;
+  color: ${({ theme }) => theme.primaryLight};
+  border-radius: 30px;
+  height: 5%;
+  width: 100%;
+  padding: 5%;
+  font-size: 0.75em;
+  font-style: italic;
 `;
 
 export const CardHeader = styled.header`
-  font-size: 20px;
+  font-size: 18px;
   margin: .25rem 0 auto;
+  height: 10%;
   text-decoration: none;
+  font-weight: bold;
   color: ${({ theme }) => theme.primaryLight};
   border: 0;
   display: inline-block;
   cursor: pointer;
 
   &:hover {
-    background: linear-gradient(90deg,#cf8d00,#ff5500);
+    background: linear-gradient(90deg,#e1b382,#c89666);
     text-shadow: none;
     -webkit-text-fill-color: transparent;
     -webkit-background-clip: text;
@@ -88,7 +93,18 @@ export const CardHeader = styled.header`
     }
 `
 export const CardDescription = styled.article`
-  color: ${({ theme }) => theme.primaryLight};
+  color: ${({ theme }) => theme.primaryDark};
+  background-color: ${({ theme }) => theme.primaryLight};
+  height: 85%;
+  border: 1px solid ${({ theme }) => theme.primaryDark};
+  border-radius: 12px;
+  padding: 5%;
+  &:hover {
+    background: linear-gradient(120deg,#e1b382,#c89666);
+    text-shadow: none;
+    background-clip: text;
+    }
+  
 `
 
 

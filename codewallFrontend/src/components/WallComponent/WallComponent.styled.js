@@ -41,7 +41,7 @@ color: ${({ theme }) => theme.primaryLight};
 font-size: 25px;
 font-family: 'DM Mono', monospace;
 border-radius: 10px;
-box-shadow: 1rem 1rem 1rem ${({ theme }) => theme.primaryDark};
+box-shadow: .5rem .5rem 1rem ${({ theme }) => theme.primaryDark};
 border-color: ${({ theme }) => theme.primaryDark};
 outline: none;
 
